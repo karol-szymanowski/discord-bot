@@ -6,13 +6,13 @@ describe('hello command', () => {
     const msg = {
       author: 'test'
     }
-    
-    expect(hello(msg)).toEqual('hello test')
+
+    expect(hello.function(msg)).toEqual('Hello test!')
   })
 
   it('should throw error', () => {
     expect(() => {
-      hello('').toThrow()
+      hello.function('').toThrow()
     })
   })
 })
