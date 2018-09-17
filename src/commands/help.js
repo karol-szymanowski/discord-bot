@@ -3,12 +3,22 @@ const { RichEmbed } = require('discord.js')
 
 const files = glob.sync('*.js')
 
+const glob = require('glob')
+const { RichEmbed } = require('discord.js')
+
+const files = glob.sync('*.js')
+
 module.exports = {
   command: '.help',
-  description: 'list of all commands',
+  description: '',
   function: (msg, commands) => {
     const commandsList = Object.values(commands).map( command => {
-      return `${command.command} - ${command.description}`
+      if (command.description) {
+        return `${command.command} - ${command.description}`
+      }
+      else {
+        return ${command.command}
+      }
     })
     const response = new RichEmbed()
       .setTitle('List of all commands:')

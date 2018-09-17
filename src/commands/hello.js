@@ -1,6 +1,6 @@
 module.exports = {
   command: '.hello',
-  description: 'Greeting stranger!',
+  description: '',
   function: function (msg) {
     if (!msg.author){
       throw new Error('empty name')
