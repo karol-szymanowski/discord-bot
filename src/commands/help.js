@@ -3,11 +3,6 @@ const { RichEmbed } = require('discord.js')
 
 const files = glob.sync('*.js')
 
-const glob = require('glob')
-const { RichEmbed } = require('discord.js')
-
-const files = glob.sync('*.js')
-
 module.exports = {
   command: '.help',
   description: '',
