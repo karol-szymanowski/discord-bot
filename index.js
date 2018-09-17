@@ -21,7 +21,16 @@ client.on("ready", () => {
 })
 
 client.on("message", message => {
-  if (commands[message.content]){
-  	message.channel.send(commands[message.content](message))
-  }
+
+	// commands
+	if (message.content.indexOf('.') === 0) {
+		const command = message.content.split(' ')[0]
+	  if (commands[command]){
+			message.channel.send(commands[command](message))
+	  }
+		else {
+			message.channel.send('Unknown command :cry:, use ".help" for full list of commands')
+		}
+	}
+	
 })
