@@ -1,7 +1,4 @@
-const glob = require('glob')
 const { RichEmbed } = require('discord.js')
-
-const files = glob.sync('*.js')
 
 module.exports = {
   command: '.help',
@@ -12,7 +9,7 @@ module.exports = {
         return `${command.command} - ${command.description}`
       }
       else {
-        return ${command.command}
+        return command.command
       }
     })
     const response = new RichEmbed()
