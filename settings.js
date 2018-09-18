@@ -3,5 +3,5 @@ module.exports = {
     'Admin',
     'Bots'
   ],
-  commandSign: '.'
+  prefix: '!'
 }

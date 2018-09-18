@@ -2,14 +2,14 @@ require('dotenv').config()
 
 const { Client } = require("discord.js")
 const glob = require('glob')
-const { commandSign } = require('./settings')
+const { prefix } = require('./settings')
 
 // import all commands
 var commands = []
 const files = glob.sync('**/src/commands/!(*.test).js')
 
 files.forEach( file => {
-  commands['.' + file.replace('src/commands/', '').replace('.js', '')] = require('./' + file)
+  commands[prefix + file.replace('src/commands/', '').replace('.js', '')] = require('./' + file)
 })
 
 // connect to discord
@@ -24,7 +24,7 @@ client.on("ready", () => {
 client.on("message", message => {
 
 	// commands
-	if (message.content.indexOf(commandSign) === 0) {
+	if (message.content.indexOf(prefix) === 0) {
 		const command = message.content.split(' ')[0]
 	  if (commands[command]){
 			message.channel.send(commands[command].function(message, commands))

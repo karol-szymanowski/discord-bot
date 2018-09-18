@@ -1,5 +1,7 @@
+const { prefix } = require('../../settings')
+
 module.exports = {
-  command: '.hello',
+  command: `${prefix}hello`,
   description: '',
   function: function (msg) {
     if (!msg.author){

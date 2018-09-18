@@ -1,4 +1,4 @@
-const { secureRoles } = require('../../settings')
+const { secureRoles, prefix } = require('../../settings')
 
 function iam(msg) {
   var roles = msg.content.split(' ')
@@ -23,7 +23,7 @@ function iam(msg) {
 }
 
 module.exports = {
-  command: '.iam [role]',
+  command: `${prefix}iam [role]`,
   description: 'grants roles',
   function: iam
 }
