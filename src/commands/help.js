@@ -1,9 +1,9 @@
-const { RichEmbed } = require("discord.js")
-const { prefix } = require("../../settings")
+const { RichEmbed } = require('discord.js')
+const { prefix } = require('../../settings')
 
 module.exports = {
 	command: `${prefix}help`,
-	description: "",
+	description: '',
 	function: (msg, commands) => {
 		const commandsList = Object.values(commands).map( command => {
 			if (command.description) {
@@ -14,9 +14,11 @@ module.exports = {
 			}
 		})
 		const response = new RichEmbed()
-			.setTitle("List of all commands:")
+			.setTitle('List of all commands:')
 			.setColor(0xFF0000)
 			.setDescription(commandsList)
+			.setURL('https://github.com/tetrash/discord-bot')
+			.setFooter('Bot created by tetrash')
 
 		return response
 	}

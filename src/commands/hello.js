@@ -1,11 +1,11 @@
-const { prefix } = require("../../settings")
+const { prefix } = require('../../settings')
 
 module.exports = {
 	command: `${prefix}hello`,
-	description: "",
+	description: '',
 	function: function (msg) {
 		if (!msg.author){
-			throw new Error("empty name")
+			throw new Error('empty name')
 		}
 		return `Hello ${msg.author}!`
 	}

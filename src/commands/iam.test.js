@@ -1,22 +1,22 @@
-const iam = require("./iam")
-const { prefix } = require("../../settings")
+const iam = require('./iam')
+const { prefix } = require('../../settings')
 
 let msg = {
-	content: "",
+	content: '',
 	guild:{
 		roles: [
 			{
-				id: "1234",
-				name: "test"
+				id: '1234',
+				name: 'test'
 			},
 			{
-				id: "4321",
-				name: "test2"
+				id: '4321',
+				name: 'test2'
 			}
 		]
 	},
 	member: {
-		addRole: function(id) {
+		addRole: function() {
 			return 200
 		}
 	}
@@ -24,10 +24,10 @@ let msg = {
 
 var controlMessages = iam.response
 
-describe("iam command", () => {
-	it("should return value", () => {
+describe('iam command', () => {
+	it('should return value', () => {
 
-    msg.content = `${prefix}iam test`
+		msg.content = `${prefix}iam test`
 		expect(iam.function(msg)).toEqual(controlMessages.accept + 'test')
 		msg.content = `${prefix}iam test test2`
 		expect(iam.function(msg)).toEqual(controlMessages.tooManyRoles)
