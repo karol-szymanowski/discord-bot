@@ -1,13 +1,13 @@
 const { secureRoles, prefix } = require('../../settings')
 
 var response = {
-	accept: 'You are now ',
-	noRole: 'No role like this, check ',
-	tooManyRoles: 'You can add only one role at a time',
-	emptyRole: 'You are the one! https://www.youtube.com/watch?v=dT8dmvAzIqA'
+	accept: 'You are no longer ',
+	noRole: 'Wrong role ',
+	tooManyRoles: 'You can remove only one role at a time',
+	emptyRole: 'Sorry, you are not ¯&#92;_(ツ)_/¯'
 }
 
-function iam(msg) {
+function iamnot(msg) {
 	var role = msg.content.split(' ')
 	role.shift()
 	if(role.length === 1){
@@ -16,7 +16,7 @@ function iam(msg) {
 			const guildMember = msg.member
 			const roleId = msg.guild.roles.find(r => r.name === role)
 			if(roleId){
-				guildMember.addRole(roleId.id)
+				guildMember.removeRole(roleId.id)
 				return response.accept + role
 			}
 			else{
@@ -30,8 +30,8 @@ function iam(msg) {
 }
 
 module.exports = {
-	command: `${prefix}iam [role]`,
-	description: 'add role',
-	function: iam,
+	command: `${prefix}iamnot [role]`,
+	description: 'remove role',
+	function: iamnot,
 	response
 }
