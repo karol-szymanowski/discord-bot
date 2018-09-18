@@ -1,29 +1,37 @@
-const { secureRoles, prefix } = require("../../settings")
+const { secureRoles, prefix } = require('../../settings')
+
+var response = {
+  accept: 'You are now ',
+  noRole: 'No role like this, check ',
+  tooManyRoles: 'You can add only one role at a time',
+  emptyRole: 'You are the one! https://www.youtube.com/watch?v=dT8dmvAzIqA'
+}
 
 function iam(msg) {
-	var roles = msg.content.split(" ")
-	roles.shift()
-	if(roles.length === 1){
-		roles = roles.join("")
-		if(secureRoles.indexOf(roles) === -1){
+	var role = msg.content.split(" ")
+	role.shift()
+	if(role.length === 1){
+  	role = role.join('')
+		if(secureRoles.indexOf(role) === -1){
 			const guildMember = msg.member
-			const roleId = msg.guild.roles.find(role => role.name === roles)
+			const roleId = msg.guild.roles.find(r => r.name === role)
 			if(roleId){
 				guildMember.addRole(roleId.id)
-				return "You are now " + roles
+				return response.accept + role
 			}
 			else{
-				return "No role like this, check .roles"
+				return response.noRole + prefix + 'roles'
 			}
 		}
 	}
 	else {
-		return roles.length > 0 ? "You can add only one role at a time" : "You are the one! https://www.youtube.com/watch?v=dT8dmvAzIqA"
+		return role.length > 0 ? response.tooManyRoles : response.emptyRole
 	}
 }
 
 module.exports = {
 	command: `${prefix}iam [role]`,
-	description: "grants roles",
-	function: iam
+	description: 'grants role',
+	function: iam,
+	response
 }

@@ -1,4 +1,5 @@
 const iam = require("./iam")
+const { prefix } = require("../../settings")
 
 let msg = {
 	content: "",
@@ -16,20 +17,23 @@ let msg = {
 	},
 	member: {
 		addRole: function(id) {
-			return id
+			return 200
 		}
 	}
 }
 
+var controlMessages = iam.response
+
 describe("iam command", () => {
 	it("should return value", () => {
-		msg.content = ".iam test"
-		expect(iam.function(msg)).toEqual("You are now test")
-		msg.content = ".iam test test2"
-		expect(iam.function(msg)).toEqual("You can add only one role at a time")
-		msg.content = ".iam nothing"
-		expect(iam.function(msg)).toEqual("No role like this, check .roles")
-		msg.content = ".iam"
-		expect(iam.function(msg)).toEqual("You are the one! https://www.youtube.com/watch?v=dT8dmvAzIqA")
+
+    msg.content = `${prefix}iam test`
+		expect(iam.function(msg)).toEqual(controlMessages.accept + 'test')
+		msg.content = `${prefix}iam test test2`
+		expect(iam.function(msg)).toEqual(controlMessages.tooManyRoles)
+		msg.content = `${prefix}iam nothing`
+		expect(iam.function(msg)).toEqual(controlMessages.noRole + prefix + 'roles')
+		msg.content = `${prefix}iam`
+		expect(iam.function(msg)).toEqual(controlMessages.emptyRole)
 	})
 })
