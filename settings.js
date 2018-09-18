@@ -1,7 +1,7 @@
 module.exports = {
-  secureRoles: [
-    'Admin',
-    'Bots'
-  ],
-  prefix: '!'
+	secureRoles: [
+		"Admin",
+		"Bots"
+	],
+	prefix: "!"
 }
