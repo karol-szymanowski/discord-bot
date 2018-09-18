@@ -1,7 +1,7 @@
 module.exports = {
-  secureRoles: [
-    'Admin',
-    'Bots'
-  ],
-  commandSign: '.'
+	secureRoles: [
+		"Admin",
+		"Bots"
+	],
+	prefix: "!"
 }
