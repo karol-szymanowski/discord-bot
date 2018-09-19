@@ -28,6 +28,6 @@ describe('help command', () => {
 			'url': 'https://github.com/tetrash/discord-bot'
 		}
 
-		expect(help.function(msg, commands)).toEqual(expected)
+		expect(help.response(msg, commands)).toEqual(expected)
 	})
 })

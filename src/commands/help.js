@@ -4,7 +4,7 @@ const { prefix } = require('../../settings')
 module.exports = {
 	command: `${prefix}help`,
 	description: '',
-	function: (msg, commands) => {
+	response: (msg, commands) => {
 		const commandsList = Object.values(commands).map( command => {
 			if (command.description) {
 				return `${command.command} - ${command.description}`

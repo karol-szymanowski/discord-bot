@@ -16,24 +16,24 @@ let msg = {
 		]
 	},
 	member: {
-		remove: function() {
+		removeRole: function() {
 			return 200
 		}
 	}
 }
 
-var controlMessages = iamnot.response
+const controlMessages = iamnot.messages
 
 describe('iamnot command', () => {
 	it('should return value', () => {
 
 		msg.content = `${prefix}iamnot test`
-		expect(iamnot.function(msg)).toEqual(controlMessages.accept + 'test')
+		expect(iamnot.response(msg)).toEqual(controlMessages.accept + 'test')
 		msg.content = `${prefix}iamnot test test2`
-		expect(iamnot.function(msg)).toEqual(controlMessages.tooManyRoles)
+		expect(iamnot.response(msg)).toEqual(controlMessages.tooManyRoles)
 		msg.content = `${prefix}iamnot nothing`
-		expect(iamnot.function(msg)).toEqual(controlMessages.noRole + prefix + 'roles')
+		expect(iamnot.response(msg)).toEqual(controlMessages.noRole + prefix + 'roles')
 		msg.content = `${prefix}iamnot`
-		expect(iamnot.function(msg)).toEqual(controlMessages.emptyRole)
+		expect(iamnot.response(msg)).toEqual(controlMessages.emptyRole)
 	})
 })
