@@ -22,18 +22,18 @@ let msg = {
 	}
 }
 
-var controlMessages = iam.response
+const controlMessages = iam.messages
 
 describe('iam command', () => {
 	it('should return value', () => {
 
 		msg.content = `${prefix}iam test`
-		expect(iam.function(msg)).toEqual(controlMessages.accept + 'test')
+		expect(iam.response(msg)).toEqual(controlMessages.accept + 'test')
 		msg.content = `${prefix}iam test test2`
-		expect(iam.function(msg)).toEqual(controlMessages.tooManyRoles)
+		expect(iam.response(msg)).toEqual(controlMessages.tooManyRoles)
 		msg.content = `${prefix}iam nothing`
-		expect(iam.function(msg)).toEqual(controlMessages.noRole + prefix + 'roles')
+		expect(iam.response(msg)).toEqual(controlMessages.noRole + prefix + 'roles')
 		msg.content = `${prefix}iam`
-		expect(iam.function(msg)).toEqual(controlMessages.emptyRole)
+		expect(iam.response(msg)).toEqual(controlMessages.emptyRole)
 	})
 })

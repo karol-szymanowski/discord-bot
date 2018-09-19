@@ -1,6 +1,6 @@
 const { secureRoles, prefix } = require('../../settings')
 
-var response = {
+var messages = {
 	accept: 'You are now ',
 	noRole: 'No role like this, check ',
 	tooManyRoles: 'You can add only one role at a time',
@@ -17,21 +17,21 @@ function iam(msg) {
 			const roleId = msg.guild.roles.find(r => r.name === role)
 			if(roleId){
 				guildMember.addRole(roleId.id)
-				return response.accept + role
+				return messages.accept + role
 			}
 			else{
-				return response.noRole + prefix + 'roles'
+				return messages.noRole + prefix + 'roles'
 			}
 		}
 	}
 	else {
-		return role.length > 0 ? response.tooManyRoles : response.emptyRole
+		return role.length > 0 ? messages.tooManyRoles : messages.emptyRole
 	}
 }
 
 module.exports = {
 	command: `${prefix}iam [role]`,
 	description: 'add role',
-	function: iam,
-	response
+	response: iam,
+	messages
 }

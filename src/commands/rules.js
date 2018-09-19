@@ -1,12 +1,12 @@
 const { prefix } = require('../../settings')
 
 module.exports = {
-	command: `${prefix}hello`,
+	command: `${prefix}rules`,
 	description: '',
-	response: function (msg) {
+	function: function (msg) {
 		if (!msg.author){
 			throw new Error('empty name')
 		}
-		return `Hello ${msg.author}!`
+		return `rules ${msg.author}!`
 	}
 }

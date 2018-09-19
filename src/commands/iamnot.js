@@ -1,6 +1,6 @@
 const { secureRoles, prefix } = require('../../settings')
 
-var response = {
+var messages = {
 	accept: 'You are no longer ',
 	noRole: 'Wrong role ',
 	tooManyRoles: 'You can remove only one role at a time',
@@ -17,21 +17,21 @@ function iamnot(msg) {
 			const roleId = msg.guild.roles.find(r => r.name === role)
 			if(roleId){
 				guildMember.removeRole(roleId.id)
-				return response.accept + role
+				return messages.accept + role
 			}
 			else{
-				return response.noRole + prefix + 'roles'
+				return messages.noRole + prefix + 'roles'
 			}
 		}
 	}
 	else {
-		return role.length > 0 ? response.tooManyRoles : response.emptyRole
+		return role.length > 0 ? messages.tooManyRoles : messages.emptyRole
 	}
 }
 
 module.exports = {
 	command: `${prefix}iamnot [role]`,
 	description: 'remove role',
-	function: iamnot,
-	response
+	response: iamnot,
+	messages
 }

@@ -7,12 +7,12 @@ describe('hello command', () => {
 			author: 'test'
 		}
 
-		expect(hello.function(msg)).toEqual('Hello test!')
+		expect(hello.response(msg)).toEqual('Hello test!')
 	})
 
 	it('should throw error', () => {
 		expect(() => {
-			hello.function('').toThrow()
+			hello.response('').toThrow()
 		})
 	})
 })
