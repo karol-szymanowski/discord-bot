@@ -1,4 +1,4 @@
-const { secureRoles, prefix } = require('../../settings')
+const { securedRoles, prefix } = require('../../settings')
 
 var messages = {
 	accept: 'You are now ',
@@ -12,7 +12,7 @@ function iam(msg) {
 	role.shift()
 	if(role.length === 1){
 		role = role.join('')
-		if(secureRoles.indexOf(role) === -1){
+		if(securedRoles.indexOf(role) === -1){
 			const guildMember = msg.member
 			const roleId = msg.guild.roles.find(r => r.name === role)
 			if(roleId){

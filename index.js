@@ -30,7 +30,7 @@ client.on('message', message => {
 			message.channel.send(commands[command].response(message, commands))
 		}
 		else{
-			message.channel.send('Unknown command :cry:, use ".help" for full list of commands')
+			message.channel.send(`Unknown command :cry:, use "${prefix}help" for full list of commands`)
 		}
 	}
 

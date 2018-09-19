@@ -1,5 +1,6 @@
 module.exports = {
-	secureRoles: [
+	securedRoles: [
+		'@everyone',
 		'Admin',
 		'Bots'
 	],
