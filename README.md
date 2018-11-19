@@ -1,4 +1,4 @@
-# Discord bot
+# Discord bot ![travis](https://travis-ci.org/tetrash/discord-bot.svg?branch=master)
 
 Node.js bot for discord
 

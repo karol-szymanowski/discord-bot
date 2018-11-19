@@ -1,3 +1,12 @@
 language: node_js
 node_js:
- - "node"
+  - "node"
+branches:
+  only:
+  - master
+  - release
+deploy:
+  - provider: script
+    script: bash scripts/deploy.sh production
+    on:
+      branch: master
