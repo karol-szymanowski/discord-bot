@@ -11,8 +11,8 @@ before_install:
 - eval "$(ssh-agent -s)"
 - cp .travis/id_rsa ~/.ssh/id_rsa
 - chmod 600 ~/.ssh/id_rsa
-- touch ~/.ssh/known_hosts
 - ssh-add ~/.ssh/id_rsa
+- if [ -z `ssh-keygen -F 77.55.217.33` ]; then ssh-keyscan -H 77.55.217.33 >> ~/.ssh/known_hosts fi
 deploy:
 - provider: script
   skip_cleanup: true
