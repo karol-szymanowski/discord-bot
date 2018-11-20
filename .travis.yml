@@ -11,6 +11,7 @@ before_install:
 - eval "$(ssh-agent -s)"
 - cp .travis/id_rsa ~/.ssh/id_rsa
 - chmod 600 ~/.ssh/id_rsa
+- touch ~/.ssh/known_hosts
 - ssh-add ~/.ssh/id_rsa
 deploy:
 - provider: script
