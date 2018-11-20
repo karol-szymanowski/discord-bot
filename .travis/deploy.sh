@@ -1,5 +1,5 @@
 set -e
-ssh -p ${port} ${user}@${host} pwd
+ssh -i ~/.ssh/id_rsa -p ${port} ${user}@${host} pwd
 cd discord-bot
 git pull
 npm i
