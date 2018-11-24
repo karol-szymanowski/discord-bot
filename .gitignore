@@ -28,3 +28,6 @@ build/Release
 node_modules
 
 .env
+
+# Docker made files
+*.d

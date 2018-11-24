@@ -1,0 +1,9 @@
+{
+  "apps" : [{
+    "name"        : "bot",
+    "script"      : "./bot/index.js"
+  },{
+    "name"        : "web",
+    "script"      : "./web/index.js"
+  }]
+}

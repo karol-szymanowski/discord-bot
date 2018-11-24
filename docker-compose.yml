@@ -1,0 +1,30 @@
+version: '3.6'
+services:
+  mongo:
+    build: ./database
+    container_name: database
+    volumes:
+      - ./database/db.d:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=example
+    restart: always
+    ports:
+      - "27017:27017"
+
+  web:
+    build: ./src
+    container_name: web
+    environment:
+      - NODE_ENV=dev
+      - DATABASE_HOST=database
+      - DATABASE_PORT=27017
+      - DATABASE_USERNAME=root
+      - DATABASE_PASSWORD=example
+      - DISCORD_TOKEN=xxx
+    command: ["pm2-runtime", "process.json"]
+    volumes:
+      - ./src/web:/src/web
+      - ./src/bot:/src/bot
+    ports:
+      - "80:80"
