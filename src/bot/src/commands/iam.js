@@ -1,4 +1,3 @@
-const { securedRoles, prefix } = require('../../settings')
 
 var messages = {
 	accept: 'You are now ',
@@ -7,12 +6,12 @@ var messages = {
 	emptyRole: 'You are the one! https://www.youtube.com/watch?v=dT8dmvAzIqA'
 }
 
-function iam(msg) {
+function iam(msg, options) {
 	var role = msg.content.split(' ')
 	role.shift()
 	if(role.length === 1){
 		role = role.join('')
-		if(securedRoles.indexOf(role) === -1){
+		if(options.securedRoles.indexOf(role) === -1){
 			const guildMember = msg.member
 			const roleId = msg.guild.roles.find(r => r.name === role)
 			if(roleId){
@@ -20,7 +19,7 @@ function iam(msg) {
 				return messages.accept + role
 			}
 			else{
-				return messages.noRole + prefix + 'roles'
+				return messages.noRole + options.prefix + 'roles'
 			}
 		}
 	}
@@ -30,7 +29,7 @@ function iam(msg) {
 }
 
 module.exports = {
-	command: `${prefix}iam [role]`,
+	command: 'iam [role]',
 	description: 'add role',
 	response: iam,
 	messages

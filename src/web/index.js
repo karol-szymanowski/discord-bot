@@ -8,10 +8,10 @@ const dbConfig = {
 	db: process.env.DATABASE_DB
 }
 
-const db = mongoose.connect(`mongodb://${dbConfig.host}:${dbConfig.port}/${dbConfig.db}`, {
-  user: dbConfig.user,
-  pass: dbConfig.pass
-})
+// const db = mongoose.connect(`mongodb://${dbConfig.host}:${dbConfig.port}/${dbConfig.db}`, {
+//   user: dbConfig.user,
+//   pass: dbConfig.pass
+// })
 
 const app = express()
 const port = process.env.PORT | 80
@@ -20,10 +20,11 @@ app.use(express.static(__dirname + '/public'))
 
 app.get('/playlist', (req, res) => {
 
-	db.playlist.find({}, (e, r) => {
-    if (e) res.send(e)
-    res.send(r)
-  })
+	res.send('hello')
+	// db.playlist.find({}, (e, r) => {
+  //   if (e) res.send(e)
+  //   res.send(r)
+  // })
 })
 
 app.listen(port, () => {

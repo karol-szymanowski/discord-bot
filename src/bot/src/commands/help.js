@@ -1,13 +1,12 @@
 const { RichEmbed } = require('discord.js')
-const { prefix } = require('../../settings')
 
 module.exports = {
-	command: `${prefix}help`,
+	command: 'help',
 	description: '',
-	response: (msg, commands) => {
-		const commandsList = Object.values(commands).map( command => {
+	response: (msg, options) => {
+		const commandsList = Object.values(options.commands).map( command => {
 			if (command.description) {
-				return `${command.command} - ${command.description}`
+				return `${options.prefix}${command.command} - ${command.description}`
 			}
 			else {
 				return command.command

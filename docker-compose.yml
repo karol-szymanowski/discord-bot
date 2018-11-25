@@ -5,9 +5,6 @@ services:
     container_name: mongo
     volumes:
       - ./database/db.d:/data/db
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=root
-      - MONGO_INITDB_ROOT_PASSWORD=example
     restart: always
 
   web:
@@ -17,8 +14,6 @@ services:
       - NODE_ENV=dev
       - DATABASE_HOST=mongo
       - DATABASE_PORT=27017
-      - DATABASE_USER=root
-      - DATABASE_PASS=example
       - DATABASE_DB=discordBot
       - DISCORD_TOKEN=NDkxMDM0MzQ1MTU1NDYxMTMx.DoEyog.Pacy24EWdxjvq-Zzld_DX-u4n-U
       - DISCORD_ID=473186259150307338

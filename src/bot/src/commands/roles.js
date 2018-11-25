@@ -1,15 +1,14 @@
 const { RichEmbed } = require('discord.js')
-const { prefix, securedRoles } = require('../../settings')
 
 module.exports = {
-	command: `${prefix}roles`,
+	command: 'roles',
 	description: 'show roles',
-	response: function (msg) {
+	response: function (msg, options) {
 		const roles = msg.guild.roles.map(role => {
 			return role.name
 		})
 		const filteredRoles = roles.filter(rule => {
-			return !securedRoles.includes(rule)
+			return !options.securedRoles.includes(rule)
 		})
 		const response = new RichEmbed()
 			.setTitle('List of roles:')

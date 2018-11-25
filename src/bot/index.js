@@ -1,36 +1,30 @@
-require('dotenv').config()
+const DISCORD_TOKEN = process.env.DISCORD_TOKEN
 
 const { Client } = require('discord.js')
-const glob = require('glob')
-const { prefix } = require('./settings')
+const mongoose = require('mongoose')
+const command = require('./src/commandsWrapper.js')
 
-// import all commands
-var commands = []
-const files = ['src/commands/hello.js']
+mongoose.connect(`mongodb://${process.env.DATABASE_HOST}:${process.env.DATABASE_PORT}/${process.env.DATABASE_DB}`)
 
-files.forEach( file => {
-	commands[prefix + file.replace('src/commands/', '').replace('.js', '')] = require('./' + file)
+const Options = require('./src/models/Options.js')
+let prefix = '.'
+
+Options.findOne({ name: 'prefix' }, (err, doc) => {
+	if (err) console.error(err)
+	else {
+		console.log(doc)
+		prefix = doc.value
+	}
 })
 
 const client = new Client
 
-client.login(process.env.DISCORD_TOKEN)
+client.login(DISCORD_TOKEN)
 
 client.on('ready', () => {
 	console.log(`Logged in as ${client.user.tag}!`)
 })
 
 client.on('message', message => {
-
-	// commands
-	if (message.content.indexOf(prefix) === 0) {
-		const command = message.content.split(' ')[0]
-		if (commands[command]){
-			message.channel.send(commands[command].response(message, commands))
-		}
-		else{
-			message.channel.send(`Unknown command :cry:, use "${prefix}help" for full list of commands`)
-		}
-	}
-
+	command(prefix, message)
 })

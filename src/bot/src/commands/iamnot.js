@@ -1,4 +1,3 @@
-const { securedRoles, prefix } = require('../../settings')
 
 var messages = {
 	accept: 'You are no longer ',
@@ -7,12 +6,12 @@ var messages = {
 	emptyRole: 'Sorry, you are not ¯&#92;_(ツ)_/¯'
 }
 
-function iamnot(msg) {
+function iamnot(msg, options) {
 	var role = msg.content.split(' ')
 	role.shift()
 	if(role.length === 1){
 		role = role.join('')
-		if(securedRoles.indexOf(role) === -1){
+		if(options.securedRoles.indexOf(role) === -1){
 			const guildMember = msg.member
 			const roleId = msg.guild.roles.find(r => r.name === role)
 			if(roleId){
@@ -20,7 +19,7 @@ function iamnot(msg) {
 				return messages.accept + role
 			}
 			else{
-				return messages.noRole + prefix + 'roles'
+				return messages.noRole + options.prefix + 'roles'
 			}
 		}
 	}
@@ -30,7 +29,7 @@ function iamnot(msg) {
 }
 
 module.exports = {
-	command: `${prefix}iamnot [role]`,
+	command: 'iamnot [role]',
 	description: 'remove role',
 	response: iamnot,
 	messages
