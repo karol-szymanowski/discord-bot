@@ -1,9 +1,17 @@
 {
   "apps" : [{
     "name"        : "bot",
-    "script"      : "./bot/index.js"
+    "script"      : "./bot/index.js",
+    "ignore_watch": ["node_modules", "web"],
+    "watch"       : true,
+    "max_restarts": 3,
+    "min_uptime"  : "100"
   },{
     "name"        : "web",
-    "script"      : "./web/index.js"
+    "script"      : "./web/index.js",
+    "watch"       : true,
+    "ignore_watch": ["node_modules", "bot"],
+    "max_restarts": 3,
+    "min_uptime"  : "100"
   }]
 }

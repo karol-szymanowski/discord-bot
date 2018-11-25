@@ -6,13 +6,12 @@ const { prefix } = require('./settings')
 
 // import all commands
 var commands = []
-const files = glob.sync('**/src/commands/!(*.test).js')
+const files = ['src/commands/hello.js']
 
 files.forEach( file => {
 	commands[prefix + file.replace('src/commands/', '').replace('.js', '')] = require('./' + file)
 })
 
-// connect to discord
 const client = new Client
 
 client.login(process.env.DISCORD_TOKEN)

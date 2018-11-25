@@ -2,26 +2,27 @@ version: '3.6'
 services:
   mongo:
     build: ./database
-    container_name: database
+    container_name: mongo
     volumes:
       - ./database/db.d:/data/db
     environment:
       - MONGO_INITDB_ROOT_USERNAME=root
       - MONGO_INITDB_ROOT_PASSWORD=example
     restart: always
-    ports:
-      - "27017:27017"
 
   web:
     build: ./src
     container_name: web
     environment:
       - NODE_ENV=dev
-      - DATABASE_HOST=database
+      - DATABASE_HOST=mongo
       - DATABASE_PORT=27017
-      - DATABASE_USERNAME=root
-      - DATABASE_PASSWORD=example
-      - DISCORD_TOKEN=xxx
+      - DATABASE_USER=root
+      - DATABASE_PASS=example
+      - DATABASE_DB=discordBot
+      - DISCORD_TOKEN=NDkxMDM0MzQ1MTU1NDYxMTMx.DoEyog.Pacy24EWdxjvq-Zzld_DX-u4n-U
+      - DISCORD_ID=473186259150307338
+    entrypoint: ["sh", "./docker-entrypoint.sh"]
     command: ["pm2-runtime", "process.json"]
     volumes:
       - ./src/web:/src/web
